@@ -1,4 +1,6 @@
 #GIT_TRAINING
+<img src="https://git-scm.com/images/logos/1color-darkbg@2x.png" alt="drawing" width="200"/>
+
 
 #### Installation:
 ```
