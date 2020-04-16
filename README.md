@@ -1,5 +1,6 @@
-#GIT_TRAINING
-<img src="https://git-scm.com/images/logos/1color-darkbg@2x.png" alt="drawing" width="200"/>
+<img src="https://git-scm.com/images/logos/1color-darkbg@2x.png" alt="drawing" width="200"/>  
+
+<h3>GIT TRAINING</h3>
 
 
 #### Installation:
@@ -25,12 +26,15 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$
 #### Some git-log alias examples in ~/.gitconfig file:  
 ```
 [alias] 
-lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all  
-lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(magenta)%an%C(reset) - %C(bold yellow)%d%C(reset)%C(white)%<(80,trunc)%s%C(reset) %C(dim white)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(magenta)%an%C(reset) - %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)' --all
 
 git lg1 -10 // with 10 log entries
 ```
 
 #### Useful links
 https://git-school.github.io/visualizing-git/  
-https://learngitbranching.js.org/
+https://learngitbranching.js.org/  
+https://delicious-insights.com/fr/tous-nos-articles-et-videos/ (and some javascript too)
+
+
