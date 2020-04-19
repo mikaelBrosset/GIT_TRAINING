@@ -1,0 +1,228 @@
+<aside class="notes" data-markdown>
+    On commence git init pour ceux ne l’ayant pas déjà fait dans le répertoire de formation (# = root commit), .gitignore (avec gitignore.io)
+
+    * On démarre avec index.html
+    * Parler des bons réflexes : git status, check prompt…
+
+    Penser à se déplacer vers l'écran pour montrer les aides git à chaque commande, le prompt…
+    1. `git add .` + `git commit` + commit vide : on explique les messages fournis par git
+    2. `git ci -m 'Initial commit'` : expliquer message d'explication du commit avec *shortstat*.
+
+    Remontrer l'arbo git avec `tree .git/`
+    Montrer `cat .git/refs/heads/master`
+    Expliquer le découpage des fichiers par le premier octet : nombre max de fichiers par nœud/répertoire (pour le packing).
+    Détail d'un fichier avec `git cat-file -p FICHIER`
+    Détail du tree `git ls-tree SHA-1`
+    Rappel des 3 types d'objets : **commit -> tree -> blob** (Binary Large OBject)
+
+    **Différence avec SVN et autres : un objet est défini par son SHA1, pas son chemin** : on peut donc renommer/déplacer un fichier sans pb alors qu'en SVN on pète tout !
+
+    Blob = snapshot complet du fichier, pas le diff
+
+    Montrer en exemple code base rails :
+    Nombre total de commits `git lg | wc -l`
+    Nombre d'auteurs `git shortlog -sn | wc -l`
+    Montre l'espace occupé sur le disque `du -sh .git`
+
+    Permet de dire que les snapshot ne prennent pas de place car bien gérés par git (si ça c'est pas de la perf !).
+
+    ```
+    &lt;!doctype html&gt;
+    &lt;html lang="fr"&gt;
+    &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Ma formation Git&lt;/title&gt;
+    &lt;link rel="stylesheet" href="git.css"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h1&gt;Ma formation Git&lt;/h1&gt;
+
+    &lt;footer&gt;© 2015 - Alphonse Robichu&lt;/footer&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+    <!--<footer>
+      <code><a href="https://git-scm.com/docs/gitrepository-layout">git help repository-layout</a></code>
+    </footer>-->
+    ```
+</aside>
+<aside class="notes" data-markdown>
+    `git status` : réflexe immédiat avant un commit ou suite à un conflit.
+    Affiche plein d’info, de l’aide avec des sections propres, des infos pour les débutants…
+
+    Dans un répertoire de test qu’on supprimera après : (`mkdir test; git init`)
+
+    ```
+    mkdir -pv ./vendor/plugin
+    date > vendor/plugin/test.txt
+    git status
+    ```
+
+    Commenter l’option dans gitconfig « showUntrackedFiles »
+
+    `git status`
+
+    Option « **showUntrackedFiles** » :
+
+    * no : ne montre que les répertoires englobant
+    * normal : montre les répertoires et les fichiers
+    * all : montre en plus les fichiers dans les répertoires non tracés
+</aside>
+<aside class="notes" data-markdown>
+    L’utilisation de templates de messages peut avoir lieu dans de grosse structures/entreprises où beaucoup de normes sont en place, y compris dans la gestion des messages de commit.
+
+    Le  « -- » est du posix standard indiquant qu’on ne traite plus des options mais du chemin standard.
+
+    Référence ultime pour comprendre sous le capot : `git help repository-layout`
+</aside>
+<aside class="notes" data-markdown>
+    Depuis git 2.x : "git add" gère automatique le « -A »  (ajout automatique des untracked).
+    Deuxième commit : ajout d'un fichier "formation.css"
+
+    La plupart du temps les stagiaires auront utilisé du clone mais rarement du git init.
+</aside>
+<aside class="notes" data-markdown>
+    Question: `git diff` tout court, ça fait la différence entre quoi et quoi ? (stage et WD)
+    Option **mnemonicPrefix** est plus précis => première lettre celle désignant la zone correspondante.
+
+    Démo des --stat & co sur source code de rails avec un HEAD~200
+    En mode : « Je reviens de congés, je suis chef de projet, et je veux savoir ce qui s’est passé en mon absence »
+    Montrer en mode git diff normal pour voir comme c’est long.
+
+    `git diff --stat HEAD~1000 activerecord/test/cases/`
+
+    Puis dirstat pour montrer qu’on peut affiner :
+
+    `git diff --dirstat HEAD~1000 activerecord/test/cases/`
+
+    Une fois qu’on a filtré sur ce répertoire on sait ce qu’on vise, donc on repasse en stat
+
+    `git diff --stat HEAD~1000 activerecord/test/cases/adaptaters`
+
+    Préciser à ce stade que tout ça n’est pas possible par les interfaces graphiques.
+
+    **diff -w : pour les whitespaces**
+
+    On réindente notre fichier index.html (qu’on était pas censé avoir indenté jusque là)
+    On ajoute le title en « Formation Git qui tue ! »
+    On fait un diff et on voit ce que ça donne, puis git diff -w
+    On reset tout ça
+
+    **diff —word-diff : basé sur whitespace ASCII**
+
+    On commente l’option wordRegex dans .gitconfig
+    On change le title en mettant tout en majuscule pour voir le diff, puis le diff —word-diff .
+    On reset
+    On change un espace en espace insécable puis git diff.
+    On décommente l’option wordRegex dans .gitconfig, puis encore git diff
+    On reset
+
+    Intervalle de commit dans git : le premier est TOUJOURS exclu
+
+    On revoit l’utilisation du git show :0:index.html parfois plus pratique que le git diff —staged
+
+    Pour en savoir plus sur les conf de diff : http://git-scm.com/docs/diff-config
+</aside>
+<aside class="notes" data-markdown>
+    `git log` et `git diff` sont « cousins germains » ils sont là pour voir ce qui se passe.
+    Le log affiche lui un déroulé, mais peut afficher un diff. Du coup on retrouve l’ensemble des options de diff dans log (ex: stat …)
+
+    On commence on faisant un simple git log sur notre WD.
+    Ensuite
+
+    ```
+    git log --online
+    git log --oneline --decorate
+    git log --oneline --decorate --graph (tout naze car pas de branche etc)
+    ```
+
+    Certains préfèrent avoir la main sur la mise en forme complète avec —pretty-format, ce qu’on a fait pour vous avec l’alias
+
+    ```
+    git help lg
+    git lg
+    ```
+
+    Ensuite on va sur le projet rails :
+
+    ```
+    git lg -200
+    git lg (allez, on est des oufs)
+    ```
+
+    On revient sur notre WD.
+    Expliquer qu’on peut également filtrer, par exemple limiter en nombre
+
+    ```
+    git lg -3
+    git lg -p (pour patch : affiche les diff)
+    git lg --stat
+    git lg --grep=css
+    git lg --grep=css -i
+    ```
+
+    Retourner dans rails :
+
+    ```
+    git lg -20 —author=patter
+    git lg --author=patter -20 --grep='Merge pull' activerecord/
+    ```
+
+    On parle ensuite de git log -S/-G.
+    Demander si qqn connait git blame et indiquer que c’est naze : ne gère pas les suppressions de ligne, prend en compte seulement la dernière modification du fichier concerné (mais ça pourrait être une action de retrait de whitespace).
+
+    -S : vérifie les ajouts/suppressions (cherche les diffs qui ont retiré ou introduit le texte, sans prendre en compte les modifications environnantes)
+    git lg -p -S git.css index.html
+    -G : vérifie quel commit a introduit le changement en se basant sur une regex
+    Différence : si on part du diff suivant
+
+    ```
+    +    return !regexec(regexp, two->ptr, 1, &regmatch, 0);
+    ...
+    -    hit = !regexec(regexp, mf2.ptr, 1, &regmatch, 0);
+    ```
+
+    Alors que git log -G"regexec\(regexp" montrera ce commit, git log -S"regexec\(regexp" --pickaxe-regex ne le fera pas (car le nombre d’occurrences de la string n’a pas changé)
+
+    -L (line range) : va permettre de se concentrer sur une portion de fichier (aucun outil graphique ne l’utilise)
+
+    ```
+    git lg -L 3,7:index.html
+
+    git log -L '/int main/‘,/^}/:main.c
+    ```
+
+    Montrer sur une fonction JS :
+
+    ```git lg -L '/addBranch (branch)/','/  }/':js/d3-git/git-graph.js```
+
+    Montre comment la fonction main a évolué au fil du temps
+    </section>
+
+    <aside class="notes" data-markdown>
+        HEAD cible le commit sur lequel on base les changements en cours dans le WD.
+
+        Techniquement il s’agit d’une référence vers l’un des `.git/refs/heads`, sauf pour le cas exceptionnel du « **detached head** » dans lequel HEAD référence directement un commit.
+
+    </aside>
+
+    <aside class="notes" data-markdown>
+        git show = git show HEAD (on vérifie que les modifs en cours sont celles que l’on veut commiter)
+
+        `git show HEAD~3:index.html`
+    </aside>
+    <aside class="notes" data-markdown>
+        **Corrigé**
+
+        On se sert du reflog pour revenir un cran en arrière dans nos manipulations sur la branche en cours.
+
+        ```
+        git reset --hard @{1}
+        ```
+
+        Encore une fois, le reflog est votre ami ! N’oubliez pas : il est TRÈS difficile de perdre réellement un travail qui a été effectué localement.
+    </aside>
+    <aside class="notes" data-markdown>
+        On déroule en racontant la ligne de vie d’un fichier.
+        Parler du cas particulier d’un ajout partiel où le fichier peut être ** *modified* et *staged* à la fois**.
+    </aside>

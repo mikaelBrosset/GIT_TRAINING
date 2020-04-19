@@ -1,0 +1,77 @@
+{
+  "legend": " ",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "87ab2"
+      },
+      "tagPosition": "top",
+      "commits": ["34ac2", "f30ab", "87ab2"]
+    },
+    {
+      "name": {
+        "value": "release-1.0",
+        "position": "a9cdf"
+      },
+      "commits": ["c2b9e", "a9cdf"],
+      "startAt": "f30ab",
+      "head": "a9cdf"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git commit -am 'Fix #42…'",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["b3c8c"],
+          "branch": "release-1.0"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "release-1.0",
+          "target": "b3c8c"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "release-1.0"
+        }
+      ]
+    },
+    {
+      "legend": "git checkout master",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git cherry-pick -x b3c8c",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["b3c8c’"],
+          "branch": "master"
+        },
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "b3c8c’",
+          "className": "cherry-picked"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "b3c8c’"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    }
+  ]
+}

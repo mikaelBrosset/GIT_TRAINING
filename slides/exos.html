@@ -1,0 +1,169 @@
+<section id="exercises-1">
+    <section data-background-image="images/cat-experiments.png" data-background-size="100%" data-background-position="center">
+        <h1 class="translucent">Pratiquons un peu…</h1>
+    </section>
+
+    <section>
+        <h2>Exercice 1 (1/2)</h2>
+        <h3>J’ai foiré mon git add -p …</h3>
+        <h4>J’ai oublié une partie dans mon stage et j’ai mis quelque chose en trop.</h4>
+        <p>Sur la branche <code>feat/training-detail</code> nous avons effectué un ajout partiel mais avons introduit des erreurs : dans <code>trainings/index.html</code>, nous voulions lier le fichier nouvellement créé <code>trainings/js-total.html</code>.</p>
+        <p>Or nous avons lié le fichier <code>trainings/node-js.html</code> non finalisé et inclus une modification non voulue qui concerne le fichier <code>trainings/git-total.html</code>.</p>
+        <p>Nous voulons donc défaire le <em>stage</em> incriminé.</p>
+    </section>
+
+    <section>
+        <h2>Exercice 1 (2/2)</h2>
+        <h3>J’ai foiré mon git add -p …</h3>
+        <img src="images/git-exercise-1.png" alt="Exercice 1">
+
+        <aside class="notes" data-markdown>
+            **Corrigé**
+
+            Il nous faut défaire le stage incriminé.
+
+            ```
+            git reset trainings/index.html trainings/git-total.html
+            git add -p trainings/index.html
+            ```
+
+            NB : Si on avait déjà la partie souhaitée dans `trainings/index.html` et qu’on voulait retirer la partie d’appel à `node-js.html`, on aurait pu faire directement :
+
+            ```
+            git reset -p trainings/index.html trainings/git-total.html
+            ```
+
+            On aurait alors unstagé toute les modifications de git-total.html et uniquement la modification `node-js.html` du fichier `trainings/index.html`.
+        </aside>
+    </section>
+
+    <section>
+        <h2>Exercice 2 (1/2)</h2>
+        <h3>J’ai foiré mon git add -p … et commité</h3>
+        <p>Même contexte que l’exercice 1, sauf que nous avons commité en plus…</p>
+        <p>On veut donc défaire non plus les modifications du stage mais du <strong>dernier commit</strong> (position précédente du <code>HEAD</code>), sans écraser nos modifications locales, puis ré-écrire ce dernier commit en conservant son message.</p>
+    </section>
+
+    <section>
+        <h2>Exercice 2 (2/2)</h2>
+        <h3>J’ai foiré mon git add -p … et commité (2/2)</h3>
+        <img src="images/git-exercise-2.png" alt="Exercice 2">
+
+        <aside class="notes" data-markdown>
+            **Corrigé**
+
+            L‘opération est quasi identique à la précédente sauf que nous devons défaire les modifications du dernier commit, sans écraser nos modifications locales. Le dernier commit correspond à la position précédente du `HEAD`, soit donc `HEAD~1`.
+            Il nous faut ensuite ré-écrire ce dernier commit (`--amend`), mais en conservant son message (`--no-edit`).
+
+            ```
+            git reset HEAD~1 trainings/index.html trainings/git-total.html
+            git add -p trainings/index.html
+            git commit --amend —no-edit
+            ```
+
+            Vous aurez remarqué que suite au reset nous avons obtenu un stage intermédiaire correspondant aux opérations inverses de notre commit précédent sur les fichiers désignés.
+
+            C’est un bon indicateur pour savoir que nous effectuons la bonne manipulation.
+        </aside>
+    </section>
+
+    <section>
+        <h2>Exercice 3</h2>
+        <h3>J’ai tout commité au lieu de juste mon stage</h3>
+        <p>On avait préparé notre commit (<em>stage</em> prêt) sauf qu’au moment du commit nous allons avoir ce réflexe malheureux d’ajouter l’option <code>-a</code>.</p>
+        <p>En entrant dans le répertoire, regardez l’état du <em>working directory</em> et du <em>stage</em>, puis <strong><u>faites</u></strong> :</p>
+
+        <pre><code data-keep-tags="strong" class="language-bash">git commit -am 'Add logo to header in git-total.html'</code></pre>
+
+        <p>On veut retirer du commit seulement les <br/>fichiers/modifications qui n’avaient pas à y être :</p>
+        <p>
+            <code>trainings/js-total.html</code><br/>
+            <code>trainings/index.html</code>
+        </p>
+        <p>Autrement dit, on veut remettre ces fichiers dans leur état précédent, puis rejouer notre commit.</p>
+
+        <aside class="notes" data-markdown>
+            **Corrigé**
+
+            Il suffit remettre les fichiers concernés dans leur état précédent (un cran en arrière de `HEAD`, soit `HEAD~1`).
+
+            Puis on rejoue le commit sans modifier le message, car celui-ci convenait.
+
+            ```
+            git reset HEAD~1 trainings/index.html trainings/js-total.html
+            git ci --amend --no-edit
+            ```
+        </aside>
+    </section>
+
+    <section>
+        <h2>Exercice 4</h2>
+        <h3>J’ai foiré mon message de commit</h3>
+        <p>Dans notre dépôt nous avons créé la page pour la formation node-js et préparé le lien dans notre fichier <code>trainings/index.html</code>.</p>
+        <p><strong><u>Vous</u></strong> allez donc créer un commit à cet effet (le <em>stage</em> est déjà prêt) :</p>
+        <pre><code data-keep-tags="strong" class="language-bash">git commit -m 'Create node-js detail'</code></pre>
+        <p>En vérifiant le <em>log</em> (<code>git lg -5</code>) on s’aperçoit malheureusement que nous avions utilisé un autre format d’intitulé pour les pages JS Total et Git Total.</p>
+        <p>Pour être cohérents et avoir un historique nickel, nous aimerions avoir plutôt le message de commit « <code>Add node-js page</code> ».</p>
+
+        <aside class="notes" data-markdown>
+            **Corrigé**
+
+            ```
+            git commit --amend -m 'Add node-js page'
+            ```
+
+            Si nous n’avions pas précisé l’option `-m` avec le message, Git aurait ouvert notre éditeur et nous aurait donné la main pour éditer le message.
+        </aside>
+    </section>
+
+    <section>
+        <h2>Exercice 5</h2>
+        <h3>J’ai mis 2 commits à corriger mon bug</h3>
+        <p>Dans notre dépôt nous avons effectué plusieurs modifications <br/>concernant l’ajout de la page <code>node-js.html</code> :<br/>la création du contenu puis l’ajout du logo.</p>
+        <p>Considérons que l’ajout du logo n’a pas lieu d’être dans un commit dédié et qu’il convient de le mettre dans notre commit de création de page.</p>
+        <p>Il nous faut défaire les modifications du dernier commit et <strong>mettre à jour</strong> le commit précédent pour qu’il les intègre.</p>
+
+        <aside class="notes" data-markdown>
+            **Corrigé**
+
+            ```
+            git reset --soft HEAD~1
+            git ci --amend --no-edit
+            ```
+
+            L’option `--soft` replace le stage tel qu’il était juste avant de créer le commit. De ce fait nous n’avons pas à effectuer à nouveau les ajouts des modifications que nous visions.
+        </aside>
+    </section>
+
+    <section>
+        <h2>Exercice 6 (1/2)</h2>
+        <h3></h3>
+        <p>Nous avions effectué 2 commits sur la branche <code>feat/training-detail</code> pour ajouter la gestion d’un sommaire en latéral sur les pages des formations.</p>
+        <p>Malheureusement nous avons effectué une mauvaise manipulation et sommes revenus 2 commits en arrière :</p>
+        <!-- <p><code>git reset --hard HEAD~2</code></p> -->
+
+        <div id="git-exercise-6-1" class="git-graph" data-src="git-exercise-6-1.json" data-height="250" data-width="530">
+        </div>
+    </section>
+
+    <section>
+        <h2>Exercice 6 (2/2)</h2>
+        <p>Nous souhaitons donc récupérer ces commits <br/>pour ne pas perdre notre travail.
+        </p>
+        <p>Pour cela on va pouvoir se servir de la <strong>journalisation</strong> de nos actions dans Git pour défaire la dernière que nous avons effectué.
+        </p>
+        <div id="git-exercise-6-2" class="git-graph" data-src="git-exercise-6-2.json" data-height="250" data-width="530"></div>
+
+        <aside class="notes" data-markdown>
+            **Corrigé**
+
+            On se sert du reflog pour revenir un cran en arrière dans nos manipulations sur la branche en cours.
+
+            ```
+            git reset --hard @{1}
+            ```
+
+            Encore une fois, le reflog est votre ami ! N’oubliez pas : il est TRÈS difficile de perdre réellement un travail qui a été effectué localement.
+        </aside>
+    </section>
+</section>

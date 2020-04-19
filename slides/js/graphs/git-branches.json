@@ -1,0 +1,86 @@
+{
+  "legend": " ",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "f30ab"
+      },
+      "tagPosition": "top",
+      "commits": ["98ca9", "34ac2", "f30ab"],
+      "head": "f30ab"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git branch fastapi",
+      "actions": [
+        {
+          "method": "setBranch",
+          "branch": {
+            "name": {
+              "value": "fastapi"
+            },
+            "startAt": "f30ab"
+          }
+        }
+      ]
+    },
+    {
+      "legend": "git checkout fastapi",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "fastapi"
+        }
+      ]
+    },
+    {
+      "legend": "git commit -a …",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["c2b9e"],
+          "branch": "fastapi"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "fastapi",
+          "target": "c2b9e"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "fastapi"
+        }
+      ]
+    },
+    {
+      "legend": "git checkout master",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git commit -a …",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["87ab2"],
+          "branch": "master"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "87ab2"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    }
+  ]
+}

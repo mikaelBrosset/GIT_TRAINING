@@ -1,0 +1,72 @@
+{
+  "legend": "  ",
+  "branches": [
+    {
+      "name": {
+        "value": "feat/trainings",
+        "position": "80f1a96"
+      },
+      "tagPosition": "top",
+      "commits": ["09b4845", "80f1a96"],
+      "head": "80f1a96"
+    },
+    {
+      "name": {
+        "value": "css/theming",
+        "position": "b75f690"
+      },
+      "startAt": "80f1a96",
+      "commits": ["b75f690"]
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git checkout b75f690",
+      "actions": [
+        {
+          "method": "setBranch",
+          "branch": {
+            "name": {
+              "value": "((b75f690...))"
+            },
+            "tagPosition": "top",
+            "startAt": "b75f690"
+          }
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "((b75f690...))"
+        }
+      ]
+    },
+    {
+      "legend": "git add … + commit (x2)",
+      "actions": [
+        {
+          "method": "addCommits",
+          "branch": "((b75f690...))",
+          "commits": ["b99e567", "8fb22d2"]
+        },
+        {
+          "method": "detachCommits",
+          "branch": "((b75f690...))",
+          "commits": ["b99e567", "8fb22d2"]
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "((b75f690...))",
+          "target": "8fb22d2"
+        },
+        {
+          "method": "renameBranchTag",
+          "branch": "((b75f690...))",
+          "label": "((8fb22d2...))"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "((8fb22d2...))"
+        }
+      ]
+    }
+  ]
+}

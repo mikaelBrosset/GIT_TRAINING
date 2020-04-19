@@ -1,0 +1,273 @@
+{
+  "legend": " ",
+  "comments": " ",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "87ab2"
+      },
+      "tagPosition": "top",
+      "commits": ["f30ab", "87ab2"]
+    },
+    {
+      "name": {
+        "value": "long-lived",
+        "position": "a9cdf"
+      },
+      "commits": ["a9cdf"],
+      "startAt": "f30ab",
+      "head": "a9cdf"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git merge master",
+      "comments": "Merge de contrôle (conflit) : \"Recorded resolution for…\"",
+      "actions": [
+        {
+          "method": "merge",
+          "label": "345b8",
+          "source": {
+            "branch": "long-lived",
+            "commit": "a9cdf"
+          },
+          "target": {
+            "branch": "master",
+            "commit": "87ab2"
+          }
+        },
+        {
+          "method": "addClassToCommit",
+          "branch": "long-lived",
+          "commit": "345b8",
+          "className": "control-merge"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "long-lived",
+          "target": "345b8"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+    {
+      "legend": "git reset --merge long-lived",
+      "comments": "Annulation du merge de contrôle",
+      "actions": [
+        {
+          "method": "removeCommits",
+          "branch": "long-lived",
+          "commits": ["345b8"]
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "long-lived",
+          "target": "a9cdf"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+
+    {
+      "legend": "git commit -a …  [x2]",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["a3c8d", "b24dc"],
+          "branch": "long-lived"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "long-lived",
+          "target": "b24dc"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+    {
+      "legend": "git checkout master",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git commit -a … [x2]",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["2d5cdd", "42cd3"],
+          "branch": "master"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "42cd3"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git checkout long-lived",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+    {
+      "legend": "git merge master",
+      "comments": "Merge de contrôle : \"Resolved … using previous resolution\"",
+      "actions": [
+        {
+          "method": "merge",
+          "label": "cd5b8",
+          "source": {
+            "branch": "long-lived",
+            "commit": "b24dc"
+          },
+          "target": {
+            "branch": "master",
+            "commit": "42cd3"
+          }
+        },
+        {
+          "method": "addClassToCommit",
+          "branch": "long-lived",
+          "commit": "cd5b8",
+          "className": "control-merge"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "long-lived",
+          "target": "cd5b8"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+    {
+      "legend": "git reset --merge long-lived",
+      "comments": "Annulation du second merge de contrôle",
+      "actions": [
+        {
+          "method": "removeCommits",
+          "branch": "long-lived",
+          "commits": ["cd5b8"]
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "long-lived",
+          "target": "b24dc"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+
+    {
+      "legend": "git commit -a …",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["c2b9e"],
+          "branch": "long-lived"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "long-lived",
+          "target": "c2b9e"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "long-lived"
+        }
+      ]
+    },
+    {
+      "legend": "git checkout master",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git commit -a …",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["ca5bc"],
+          "branch": "master"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "ca5bc"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git merge long-lived",
+      "comments": "Merge définitif : \"Resolved … using previous resolution\"",
+      "actions": [
+        {
+          "method": "merge",
+          "label": "dba44",
+          "target": {
+            "branch": "long-lived",
+            "commit": "c2b9e"
+          },
+          "source": {
+            "branch": "master",
+            "commit": "ca5bc"
+          }
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "dba44"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git branch -d long-lived",
+      "comments": "Et enfin, suppression de l’étiquette de branche",
+      "actions": [
+        {
+          "method": "removeBranchTag",
+          "branch": "long-lived"
+        }
+      ]
+    }
+  ]
+}

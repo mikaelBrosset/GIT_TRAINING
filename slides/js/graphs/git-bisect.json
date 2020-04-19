@@ -1,0 +1,110 @@
+{
+  "legend": "git bisect start HEAD c1",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "c13"
+      },
+      "commits": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12", "c13"],
+      "head": "c13"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git bisect bad",
+      "actions": [
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "c13",
+          "className": "bisect-bad"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master",
+          "target": "c7"
+        }
+      ]
+    },
+    {
+      "legend": "git bisect bad",
+      "actions": [
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "c7",
+          "className": "bisect-bad"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master",
+          "target": "c4"
+        }
+      ]
+    },
+    {
+      "legend": "git bisect bad",
+      "actions": [
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "c4",
+          "className": "bisect-bad"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master",
+          "target": "c2"
+        }
+      ]
+    },
+    {
+      "legend": "git bisect good",
+      "actions": [
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "c2",
+          "className": "bisect-good"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master",
+          "target": "c3"
+        }
+      ]
+    },
+    {
+      "legend": "git bisect bad",
+      "actions": [
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "c3",
+          "className": "bisect-bad"
+        }
+      ]
+    },
+    {
+      "legend": "« c3 is the first bad commit: … »",
+      "actions": [
+        {
+          "method": "addClassToCommit",
+          "branch": "master",
+          "commit": "c3",
+          "className": "bisect-bug"
+        }
+      ]
+    },
+    {
+      "legend": "git bisect reset",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    }
+  ]
+}

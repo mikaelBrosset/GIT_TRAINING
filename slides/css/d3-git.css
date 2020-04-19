@@ -1,0 +1,115 @@
+/* Commit blocks */
+.block rect {
+  stroke: #999;
+  stroke-width: 2;
+}
+
+.block text {
+  font-size: 0.9rem;
+  fill: #fff;
+  text-anchor: middle;
+}
+
+
+text.legend {
+  fill: #444;
+  text-anchor: start;
+  font-size: 1.7rem;
+}
+
+text.comments {
+  fill: #444;
+  text-anchor: start;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-family: "Source Code Pro", Menlo, Monaco, Consolas, monospace;
+}
+
+
+/* Set color to each kind of block : commit, head, branch, tag */
+.commit rect, .merge rect {
+  fill: #0bb500;
+}
+
+.detached rect, .detached .link {
+  stroke: #aaa;
+  stroke-dasharray: 5, 5;
+}
+
+.detached rect {
+  fill: #ccc;
+}
+
+.head rect {
+  fill: #333;
+}
+
+.branch rect {
+  fill: #6c6c6c;
+}
+
+.tag rect {
+  fill: #5cdfffff;
+}
+
+/* Bisect */
+#git-bisect .commit rect {
+  fill: #aaa;
+}
+
+#git-bisect text {
+  font-size: 1.4rem;
+}
+
+#git-bisect text.legend {
+  font-size: 2.5rem;
+}
+
+
+#git-bisect .bisect-bad rect {
+  fill: #bd0000;
+}
+
+#git-bisect .bisect-bad text, #git-bisect .bisect-good text {
+  fill: #ccc;
+}
+
+#git-bisect .bisect-bug rect {
+  fill: red;
+  stroke: white;
+  stroke-width: 4;
+}
+
+#git-bisect .bisect-bug text {
+  fill: white;
+}
+
+#git-bisect .bisect-good rect {
+  fill: green;
+}
+
+/* Cherry-pick */
+.block.cherry-picked rect {
+  fill: #5e77d1;
+}
+
+/* Rerere: control merges */
+.block.control-merge rect {
+  fill: #cdaa00;
+  stroke-width: 3px;
+  stroke-dasharray: 5, 5;
+}
+
+/* Links (diagonals between blocks) */
+.link {
+  fill: none;
+  stroke: #999;
+  stroke-width: 3px;
+}
+
+.link-head, .link-branch {
+  fill: none;
+  stroke: #888;
+  stroke-width: 3px;
+  stroke-dasharray: 5, 5;
+}

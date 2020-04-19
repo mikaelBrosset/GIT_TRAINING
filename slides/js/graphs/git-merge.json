@@ -1,0 +1,50 @@
+{
+  "legend": "git branch fastapi",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "87ab2"
+      },
+      "tagPosition": "top",
+      "commits": ["34ac2", "f30ab", "87ab2"],
+      "head": "87ab2"
+    },
+    {
+      "name": {
+        "value": "fastapi",
+        "position": "a9cdf"
+      },
+      "commits": ["c2b9e", "a9cdf"],
+      "startAt": "f30ab"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git merge fastapi",
+      "actions": [
+        {
+          "method": "merge",
+          "label": "345b8",
+          "target": {
+            "branch": "fastapi",
+            "commit": "a9cdf"
+          },
+          "source": {
+            "branch": "master",
+            "commit": "87ab2"
+          }
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "345b8"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "legend": "  ",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "87ab2"
+      },
+      "tagPosition": "top",
+      "commits": ["34ac2", "f30ab", "87ab2"],
+      "head": "87ab2"
+    },
+    {
+      "name": {
+        "value": "fastapi",
+        "position": "a9cdf"
+      },
+      "commits": ["c2b9e", "a9cdf"],
+      "startAt": "f30ab"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git rebase master fastapi",
+      "actions": [
+        {
+          "method": "addCommits",
+          "commits": ["c2b9e’", "a9cdf’"],
+          "branch": "master"
+        },
+        {
+          "method": "moveBranchTag",
+          "branch": "fastapi",
+          "targetBranch": "master",
+          "target": "a9cdf’",
+          "tagPosition": "top"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "fastapi",
+          "tagPosition": "top"
+        },
+        {
+          "method": "detachCommits",
+          "branch": "fastapi",
+          "commits": ["c2b9e", "a9cdf"]
+        }
+      ]
+    }
+  ]
+}

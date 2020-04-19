@@ -1,0 +1,53 @@
+{
+  "legend": " ",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "current"
+      },
+      "tagPosition": "top",
+      "commits": ["HEAD~3", "HEAD~2", "HEAD~1", "current"],
+      "head": "current"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git branch gros-taf-finalement",
+      "actions": [
+        {
+          "method": "setBranch",
+          "branch": {
+            "name": {
+              "value": "gros-taf-finalement"
+            },
+            "startAt": "current"
+          }
+        }
+      ]
+    },
+    {
+      "legend": "git reset --soft HEAD~3",
+      "actions": [
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "target": "HEAD~3"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    },
+    {
+      "legend": "git checkout gros-taf-finalement",
+      "actions": [
+        {
+          "method": "moveHeadTag",
+          "branch": "gros-taf-finalement"
+        }
+      ]
+    }
+  ]
+}

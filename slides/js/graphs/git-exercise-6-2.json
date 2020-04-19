@@ -1,0 +1,35 @@
+{
+  "legend": "git reset --hard HEAD~2",
+  "branches": [
+    {
+      "name": {
+        "value": "feat/training-detail",
+        "position": "b2726e4"
+      },
+      "commits": ["6b55b0c", "3d6f865", "b2726e4", "b4726e9", "6433bb1"],
+      "detachedCommits": ["b4726e9", "6433bb1"],
+      "head": "b2726e4"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git reset --hard …",
+      "actions": [
+        {
+          "method": "moveBranchTag",
+          "branch": "feat/training-detail",
+          "target": "6433bb1"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "feat/training-detail"
+        },
+        {
+          "method": "attachCommits",
+          "branch": "feat/training-detail",
+          "commits": ["b4726e9", "6433bb1"]
+        }
+      ]
+    }
+  ]
+}

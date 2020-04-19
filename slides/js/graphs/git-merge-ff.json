@@ -1,0 +1,40 @@
+{
+  "legend": " ",
+  "branches": [
+    {
+      "name": {
+        "value": "master",
+        "position": "87ab2"
+      },
+      "tagPosition": "top",
+      "commits": ["34ac2", "f30ab", "87ab2"],
+      "head": "87ab2"
+    },
+    {
+      "name": {
+        "value": "fastapi",
+        "position": "a9cdf"
+      },
+      "commits": ["c2b9e", "a9cdf"],
+      "startAt": "87ab2"
+    }
+  ],
+  "steps": [
+    {
+      "legend": "git merge fastapi",
+      "actions": [
+        {
+          "method": "moveBranchTag",
+          "branch": "master",
+          "targetBranch": "fastapi",
+          "target": "a9cdf",
+          "tagPosition": "top"
+        },
+        {
+          "method": "moveHeadTag",
+          "branch": "master"
+        }
+      ]
+    }
+  ]
+}
