@@ -43,7 +43,7 @@
         <section id="intro" data-background-image="images/git.svg" data-background-size="30%">
             <h1>Git</h1>
             <h3>Formation</h3>
-            <p><small>Welcoming Group</small></p>
+            <p><small>Mikael Brosset</small></p>
         </section>
 
         <!--!!!!!!!!!!! SLIDES ------------->
@@ -66,10 +66,10 @@
                 <li>Comprendre les concepts indispensables</li><br>
 
                 <h2>Pourquoi apprendre Git ?</h2>
-                <li>Pour travailler à plusieur sur un même projet</li>
+                <li>Pour travailler à plusieurs sur un même projet</li>
                 <li>Pour pouvoir revenir en arrière si on s'est trompé</li>
                 <li>Parce qu'on s'en sert pour tous les langages et on peut s'en servir pour nimporte quel fichier</li>
-                <li>Parce que finalement c'est simple</li><br>
+                <li>Parce que c'est léger</li><br>
 
                 <h2>Les difficultés de Git ?</h2>
                 <li>Les options innombrables pour les différentes commandes.</li>
@@ -100,7 +100,7 @@
                                 <li class="subli">pas besoin de connection internet ni de droits pour travailler</li>
                             </ul>
                         </li>
-                        <img style="margin-left: 100px" height="300" src="images/git-distribué.png" alt="Gestion distribuée">
+                        <img style="margin-left: 100px" height="300" src="images/git-distribue.png" alt="Gestion distribuée">
                     </ul>
                 </div>
             </section>
@@ -116,6 +116,9 @@
                     <li><strong>Porcelaine</strong> (~38/40 commandes), les commandes principales</li>
                     <li><strong>Plomberie</strong>, les commandes bas niveau</li>
                 </ul>
+            </section>
+            <section>
+                <h2>Memento des notions</h2>
                 <table id="generics" class="tableGenerics">
                     <tbody>
                     <tr>
@@ -136,11 +139,11 @@
                         <td><strong>Étiquette</strong> représentant un historique de commits (série de commits). Un même dépôt peut avoir plein de branches, comme un arbre.</td>
                     </tr>
                     <tr>
-                        <td><strong>Master </strong></td>
+                        <td><strong>Master / Main</strong></td>
                         <td>La branche de référence d’un dépôt</td>
                     </tr>
                     <tr>
-                        <td><strong>Fusion  / Merge</strong></td>
+                        <td><strong>Fusion / Merge</strong></td>
                         <td>Réconciliation des travaux de plusieurs branches pour un résultat consolidé.</td>
                     </tr>
                     <tr>
@@ -152,7 +155,7 @@
                         <td><strong>Branche spéciale cachée !</strong>. Elle est synchronisée avec la branche du dépot distant au moyen de <code>git fetch</code>.</td>
                     </tr>
                     <tr>
-                        <td><strong>Tag / Label </strong></td>
+                        <td><strong>Tag / Label</strong></td>
                         <td><strong>Étiquette</strong> sémantique apposée sur un commit (ex. « v1.0 »). Un tag n’est pas censé être repositionné après coup.</td>
                     </tr>
                     <tr>
@@ -162,15 +165,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Conflit </strong></td>
+                        <td><strong>Conflit</strong></td>
                         <td>Situation empêchant une fusion automatique. Se résout manuellement (l'algo de Git n'a pas réussi)</td>
                     </tr>
                     <tr>
-                        <td><strong>Working Directory </strong></td>
+                        <td><strong>Working Directory</strong></td>
                         <td>L’état actuel sur le disque des dossiers et fichiers</td>
                     </tr>
                     <tr>
-                        <td><strong>le Stage / l'Index </strong></td>
+                        <td><strong>le Stage / l'Index</strong></td>
                         <td>La "salle d'attente" des modifications qui vont être commitées</td>
                     </tr>
                     </tbody>
@@ -291,15 +294,6 @@
                 <ul>
                     <li>Il existe de nombreuses conventions pour écrire ses messages de commits</li>
                     <li>Des outils comme <code>commitlint</code> peuvent aider à standardiser l'écriture des messages</li>
-                    <br>
-                    <li>A Powerspace, on utilise le nommage suivant (avec une <strong>minuscule</strong> après les :)</li>
-                    <li><strong>feat:</strong> message (new feature)</li>
-                    <li><strong>fix:</strong> message (bug fix)</li>
-                    <li><strong>docs: </strong> message (changes to documentation)</li>
-                    <li><strong>style: </strong> message (formatting, missing semi colons, etc; no code change)</li>
-                    <li><strong>refactor: </strong> message (refactoring production code)</li>
-                    <li><strong>test: </strong> message (adding missing tests, refactoring tests; no production code change)</li>
-                    <li><strong>chore: </strong> message (updating grunt tasks etc; no production code change)</li>
                 </ul>
             </section>
 
@@ -907,7 +901,7 @@
                     <li>(équivalent d'un <code>reset --hard <em>&lt;filepath&gt;</em></code> si seulement c'était possible...)
                     <li>Pratique pour virer des modifs finalement non souhaitées</li>
                         <pre><code data-keep-tags="strong" class="language-bash"><span>git checkout <em>index.html</em></span> #HEAD par défaut, pour restaurer les fichiers en staged
-                        </code><code data-keep-tags="strong" class="language-bash"><span>git restore / checkout &lt;revision&gt; <em>index.html</em></span>
+                        </code><code data-keep-tags="strong" class="language-bash"><span>git restore / checkout --source &lt;revision&gt; <em>index.html</em></span>
                         </code><code data-keep-tags="strong" class="language-bash">&nbsp&nbsp&nbsp&nbsp # avec révision: update le stage ET le Working Dir
                         </code><code data-keep-tags="strong" class="language-bash"><span>git restore / checkout -p <em>index.html</em></span> #pour checkout que certaines parties
                         </code><code data-keep-tags="strong" class="language-bash"><span>git restore --source <em>&lt;commit&gt;</em></span> #pour préciser un commit
