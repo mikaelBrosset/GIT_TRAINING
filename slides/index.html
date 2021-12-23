@@ -901,8 +901,9 @@
                     <li>(équivalent d'un <code>reset --hard <em>&lt;filepath&gt;</em></code> si seulement c'était possible...)
                     <li>Pratique pour virer des modifs finalement non souhaitées</li>
                         <pre><code data-keep-tags="strong" class="language-bash"><span>git checkout <em>index.html</em></span> #HEAD par défaut, pour restaurer les fichiers en staged
-                        </code><code data-keep-tags="strong" class="language-bash"><span>git restore / checkout --source &lt;revision&gt; <em>index.html</em></span>
+                        </code><code data-keep-tags="strong" class="language-bash"><span>git restore --source / checkout &lt;revision&gt; <em>index.html</em></span>
                         </code><code data-keep-tags="strong" class="language-bash">&nbsp&nbsp&nbsp&nbsp # avec révision: update le stage ET le Working Dir
+                        </code><code data-keep-tags="strong" class="language-bash"><span>git restore --stage &lt;filename&gt; <em>index.html</em></span> #pour unstage un fichier
                         </code><code data-keep-tags="strong" class="language-bash"><span>git restore / checkout -p <em>index.html</em></span> #pour checkout que certaines parties
                         </code><code data-keep-tags="strong" class="language-bash"><span>git restore --source <em>&lt;commit&gt;</em></span> #pour préciser un commit
                         </code><code data-keep-tags="strong" class="language-bash"><span>git restore --index <em>&lt;commit&gt;</em></span> #pour restorer dans le stage/l'index
