@@ -43,6 +43,10 @@ git reflog1 -10 // with 10 log entries
 git fsck --full --no-reflogs --unreachable | grep commit | cut -d\  -f3 | xargs -n 1 git log -n 1 --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold red)%aD%C(reset) %C(magenta)%an%C(reset) - %C(bold yellow)%d%C(reset)''%C(white)%<(80,trunc)%s%C(reset) %C(dim white)%n'
 ```
 
+#### Get a nice sorted branches list:
+alias gitbr1='for k in $(git branch | sed s/^..//); do echo -e $(git log --color=always -1 --pretty=format:"%C(green)%ci %C(blue)%cr%Creset %C(magenta)%an%Creset" $k --)\\t"$k";done | sort -r'
+alias gitbra1='for k in $(git branch -a | sed s/^..//); do echo -e $(git log --color=always -1 --pretty=format:"%C(green)%ci %C(blue)%cr%Creset %C(magenta)%an%Creset" $k --)\\t"$k";done | sort -r'
+
 #### Useful links
 https://git-school.github.io/visualizing-git/  
 https://learngitbranching.js.org/  
